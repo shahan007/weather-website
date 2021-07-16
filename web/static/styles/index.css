@@ -13,6 +13,6 @@ label, button,input{
     margin: 10px auto;
 }
 
-#flashedmessage{
+#flashmessage{
     color: red;
 }
