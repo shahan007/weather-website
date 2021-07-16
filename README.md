@@ -1,4 +1,6 @@
 # weather-website
+_API from [Open Weather](https://openweathermap.org/)_
+
 
 ## setting up
 ```console
@@ -10,4 +12,4 @@ $ pip install -r requirements.txt
 ```
 
 ## running
-`flask run`
+`$ flask run`
