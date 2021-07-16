@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}" type=text/css>
     {% set country=session.get('country') %}    
     {% set data=session.get('data') %}        
@@ -17,12 +18,12 @@
         <button>fetch</button>
     </div>
     <br>
-    <p id="flashmessage"></p>
+    <p class="redmessage"></p>
     <hr>
     <h2>Current Weather</h2>
     <div>                
         {% if not(country and data) %}
-            <p>SORRY! Please insert the country above</p>
+            <p class="redmessage">SORRY! Please insert the country above</p>
         {% else %}            
             {% set temp = data.get('main') %}
             <p >Country: <span>{{country}}</span></p>
@@ -35,9 +36,6 @@
         {% endif %}               
     </div>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        
-    </script>
     <script src="{{url_for('static',filename='scripts/index.js')}}"></script>
 </body>
 </html>

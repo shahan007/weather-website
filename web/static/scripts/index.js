@@ -1,3 +1,17 @@
+let updateMessage = () => {
+    $('div:nth-of-type(2)').empty()
+    let messaglist = [
+        'Country',
+        'Current Temp',
+        'Minimun Temp',
+        'Maximum Temp',
+        'Feels like',
+        'Humidity', 'Clouds are'
+    ]
+    messaglist.forEach(msg => {
+        $('div:nth-of-type(2)').append(`<p>${msg}: <span></span></p>`);
+    })
+}
 let updateWeather = ()=>{
     let country = document.getElementById('country');     
     $.ajax({
@@ -7,7 +21,10 @@ let updateWeather = ()=>{
         dataType: "json",
         contentType:'application/json'
     }).done(function (data) { 
-        $('#flashmessage').text('');
+        $('.redmessage').text('');
+        if ($('div:nth-of-type(2) > p').length === 1){
+            updateMessage()
+        }
         data = data.data;        
         let temp = data.main;        
         $('div:nth-of-type(2) > p:nth-of-type(1) > span').text(country.value);
@@ -19,8 +36,7 @@ let updateWeather = ()=>{
         $('div:nth-of-type(2) > p:nth-of-type(7) > span').text(data.weather[0].description);
     }).fail(function (error) { 
         let msg = error.responseJSON;
-        $('#flashmessage').text(msg.message);
+        $('.redmessage').text(msg.message);
     })
 }
-
 $('button').on('click',updateWeather);

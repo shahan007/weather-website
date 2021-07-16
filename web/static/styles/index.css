@@ -1,10 +1,33 @@
+html{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 2px;
+}
 body{
     margin: 0;
     padding: 0;
+    background-color: #EEE2DC;
 }
 
-h2,p{
+h2{
     text-align: center;
+}
+
+div:nth-of-type(2) > p{        
+    width: 20%;
+    padding: 10px 0;
+    margin: auto;    
+}
+
+div:nth-of-type(2) > p span{
+    font-weight: bold;     
+    float: right;   
+    transition: color 155ms ease-in-out;
+}
+
+div:nth-of-type(2) > p span:hover{
+    color: rgb(149, 228, 31);    
 }
 
 label, button,input{
@@ -13,6 +36,9 @@ label, button,input{
     margin: 10px auto;
 }
 
-#flashmessage{
-    color: red;
+.redmessage{
+    color: red;    
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
 }
