@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}" type=text/css>
+    {% set country=session.get('country') %}
+    {% set flashed_message = get_flashed_messages() %}
+    {% set data=session.get('data') %}        
+</head>
+<body>
+    <h2>Weather</h2>    
+    <form action="" method="POST">
+        <label for="country">Country</label>
+        <input type="text" name="country">
+        <button type="submit">post</button>
+    </form>    
+    <br>
+    {% if flashed_message %}
+        {% for msg in flashed_message %}
+            <p id="flashedmessage">{{msg}}</p>
+        {% endfor %}        
+    {% endif %}
+    <hr>
+    <h2>Current Weather</h2>
+    <div>                
+        {% if not(country and data) %}
+            <p>SORRY! Please insert the country above</p>
+        {% else %}
+            {% set temp= data.get('main')%}
+            <p id="countryName">Country: {{country}}</p>
+            <p>Current Temp is: {{temp.get('temp')}}</p>
+            <p>Minimun Temp is {{temp.get('temp_min')}}</p>
+            <p>Maximum Temp is {{temp.get('temp_max')}}</p>
+            <p>Feels like: {{temp.get("feels_like")}}</p>
+            <p>Humidity is: {{temp.get('humidity')}}</p>
+            <p>Clouds are: {{data.get('weather')[0].get("description")}}</p>
+        {% endif %}               
+    </div>    
+</body>
+</html>

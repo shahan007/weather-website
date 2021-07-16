@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+h2,p{
+    text-align: center;
+}
+
+label, button,input{
+    display: block;
+    text-align:center;
+    margin: 10px auto;
+}
+
+#flashedmessage{
+    color: red;
+}
