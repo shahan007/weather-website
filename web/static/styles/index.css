@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     background-image: url("../images/bg.jpg") ;
-    background-color: rgba(252, 238, 253, 0.8);    /* or rgba(255,255,255,0.65) */
+    background-color: rgba(252, 238, 253, 0.65);    /* or rgba(255,255,255,0.65) */
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
