@@ -4,30 +4,93 @@ html{
     line-height: 1;
     letter-spacing: 2px;
 }
-body{
+
+body {
     margin: 0;
     padding: 0;
-    background-color: #EEE2DC;
+    background-image: url("../images/bg.jpg") ;
+    background-color: rgba(252, 238, 253, 0.8);    /* or rgba(255,255,255,0.65) */
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: lighten;    
+
 }
 
 h2{
     text-align: center;
 }
 
-div:nth-of-type(2) > p{        
-    width: 20%;
-    padding: 10px 0;
-    margin: auto;    
+h2:nth-of-type(1){
+    margin-top: 0;
+    padding-top: 3rem;
 }
 
-div:nth-of-type(2) > p span{
-    font-weight: bold;     
-    float: right;   
-    transition: color 155ms ease-in-out;
+div:nth-of-type(1) > div {
+    position: relative;
+    width: 30%;
+    margin: auto;
 }
 
-div:nth-of-type(2) > p span:hover{
-    color: rgb(149, 228, 31);    
+input{
+    width: 100%;
+    outline: none;
+    border: 0;     
+    border-bottom: 1px solid #ccc;
+    font: 15px/24px "Lato", Arial, sans-serif;
+    color: rgba(51, 51, 51, 0.75);     
+    padding: 7px 0;
+    box-sizing: border-box; 
+    background-blend-mode: lighten;
+    
+}
+
+input + span{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    z-index: 99;
+}
+input + span:before, input + span:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(239, 112, 253, 0.65);
+    transition: 0.4s;
+}
+
+input + span:after{
+    left: auto;
+    right: 0;
+}
+input:focus + span:before, input:focus + span:after{
+    width: 50%;
+    transition: 0.4s;
+}
+
+hr{ 
+    height: 30px; 
+    border-style: solid; 
+    border-color: #8c8b8b; 
+    border-width: 1px 0 0 0; 
+    border-radius: 20px; 
+} 
+
+hr::before { 
+    display: block; 
+    content: ""; 
+    height: 30px; 
+    margin-top: -31px; 
+    border-style: solid; 
+    border-color: #8c8b8b; 
+    border-width: 0 0 1px 0; 
+    border-radius: 20px; 
 }
 
 label, button,input{
@@ -41,4 +104,20 @@ label, button,input{
     font-weight: bold;
     font-style: italic;
     text-align: center;
+}
+
+#weather-data > p{        
+    width: 20%;
+    padding: 10px 0;
+    margin: auto;    
+}
+
+#weather-data > p span{
+    font-weight: bold;     
+    float: right;   
+    transition: color 155ms ease-in-out;
+}
+
+#weather-data > p span:hover{
+    color: rgba(213, 44, 255, 0.65);    
 }

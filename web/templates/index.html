@@ -14,14 +14,18 @@
     <h2>Weather</h2>    
     <div>
         <label for="country">Country</label>
-        <input type="text" name="country" id="country">
+        <!-- <input type="text" name="country" id="country"> -->
+        <div>
+            <input type="text" placeholder="Singapore" name="country" id="country">
+            <span></span>
+        </div>
         <button>fetch</button>
     </div>
     <br>
     <p class="redmessage"></p>
     <hr>
     <h2>Current Weather</h2>
-    <div>                
+    <div id="weather-data">                
         {% if not(country and data) %}
             <p class="redmessage">SORRY! Please insert the country above</p>
         {% else %}            
