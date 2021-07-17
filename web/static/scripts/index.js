@@ -1,7 +1,7 @@
 let updateMessage = () => {
     $('#weather-data').empty()
     let messaglist = [
-        'Country',
+        'Country/City',
         'Current Temp',
         'Minimun Temp',
         'Maximum Temp',
@@ -12,12 +12,16 @@ let updateMessage = () => {
         $('#weather-data').append(`<p>${msg}: <span></span></p>`);
     })
 }
-let updateWeather = ()=>{
-    let country = document.getElementById('country');     
+let updateWeather = (lon=null,lat=null)=>{
+    let place = document.getElementById('place');
     $.ajax({
         type: "POST",
         url: "/updateweather",
-        data: JSON.stringify({ 'country': country.value}),
+        data: JSON.stringify({ 
+            'place': place.value,
+            'longitude' : lon,
+            'latitude':lat
+        }),
         dataType: "json",
         contentType:'application/json'
     }).done(function (data) { 
@@ -26,8 +30,11 @@ let updateWeather = ()=>{
             updateMessage()
         }
         data = data.data;        
+        if (lon && lat) {
+            place.value = data.name;
+        }
         let temp = data.main;        
-        $('#weather-data > p:nth-of-type(1) > span').text(country.value);
+        $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
         $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
         $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
         $('#weather-data > p:nth-of-type(4) > span').text(temp.temp_max);
@@ -40,4 +47,23 @@ let updateWeather = ()=>{
     })
 }
 
-$('button').on('click',updateWeather);
+function geoFindMe() {
+
+    function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        updateWeather(longitude,latitude);
+    }
+
+    function error() {
+        console.log('Unable to retrieve your location');
+    }
+
+    if (!navigator.geolocation) {
+        console.log("Geolocation is not supported by this browser.");
+    } else {
+        navigator.geolocation.getCurrentPosition(success, error);
+    }    
+}
+$('button').on('click', () => { updateWeather() });
+geoFindMe();

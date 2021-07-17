@@ -1,22 +1,32 @@
 from flask import (Flask , request , render_template , session,url_for,jsonify)
-from .request_weather import request_weather
+from .request_weather import request_weather, request_weather_geo
 
 app = Flask(__name__)
 app.secret_key = b"hello input any secret key"
 
 @app.route("/",methods=["GET"])
-def index():        
+def index():
     return render_template('index.html')
 
 @app.route('/updateweather',methods=["POST"])
 def update_weather():
-    country = request.get_json().get('country')    
-    error = jsonify({'message': f'{country or "Empty"} is an invalid country!'})
-    error.status_code = 400
-    if country:
-        data = request_weather(country.lower())
+    data      = request.get_json()
+    place = data.get('place')
+    longitude = data.get('longitude')
+    latitude  = data.get('latitude')
+    error = jsonify({'message': f'{place or "Empty"} is an invalid location!'})
+    error.status_code = 400    
+    if latitude and longitude:
+        data = request_weather_geo(longitude,latitude)
+        if data:            
+            session['place'] = data.get('name')
+            session['data'] = data
+            return jsonify({'data': data}), 200    
+        return error            
+    if place:
+        data = request_weather(place.lower())
         if data:
-            session['country'] = country
+            session['place'] = place
             session['data'] = data
             return jsonify({'data':data}) , 200
         return  error
