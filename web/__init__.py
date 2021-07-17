@@ -24,8 +24,7 @@ def update_weather():
         return error
 
 @app.errorhandler(404)
-def handle_404(msg):
-    a=10
+def handle_404(msg):    
     return f"""            
             <h3>{msg}</h3>
             <a href="{url_for('index')}">GO BACK</a>
