@@ -26,24 +26,29 @@ let updateWeather = (lon=null,lat=null)=>{
         contentType:'application/json'
     }).done(function (data) { 
         $('.redmessage').text('');
-        if ($('#weather-data > p').length === 1){
+        if ($('#weather-data > p').length === 1){            
             updateMessage()
         }
         data = data.data;        
         if (lon && lat) {
             place.value = data.name;
         }
-        let temp = data.main;        
-        $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
-        $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
-        $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
-        $('#weather-data > p:nth-of-type(4) > span').text(temp.temp_max);
-        $('#weather-data > p:nth-of-type(5) > span').text(temp.feels_like);
-        $('#weather-data > p:nth-of-type(6) > span').text(temp.humidity);
-        $('#weather-data > p:nth-of-type(7) > span').text(data.weather[0].description);
+        let temp = data.main;      
+        $('#weather-data').animate({ 'opacity': 0 }, 400, function () {
+            $(this).animate({ 'opacity': 1 }, 400);
+            $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
+            $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
+            $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
+            $('#weather-data > p:nth-of-type(4) > span').text(temp.temp_max);
+            $('#weather-data > p:nth-of-type(5) > span').text(temp.feels_like);
+            $('#weather-data > p:nth-of-type(6) > span').text(temp.humidity);
+            $('#weather-data > p:nth-of-type(7) > span').text(data.weather[0].description);
+        });
     }).fail(function (error) { 
-        let msg = error.responseJSON;
-        $('.redmessage').text(msg.message);
+        let msg = error.responseJSON;        
+        $('.redmessage').animate({ 'opacity': 0 }, 400, function () {
+            $(this).text(msg.message).animate({ 'opacity': 1 }, 400);
+        });
     })
 }
 
