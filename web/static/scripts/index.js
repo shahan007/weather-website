@@ -34,8 +34,8 @@ let updateWeather = (lon=null,lat=null)=>{
             place.value = data.name;
         }
         let temp = data.main;      
-        $('#weather-data').animate({ 'opacity': 0 }, 500, function () {
-            $(this).animate({ 'opacity': 1 }, 500);
+        $('#weather-data').animate({ 'opacity': 0 }, 550, function () {
+            $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
             $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
             $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
             $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
@@ -50,12 +50,12 @@ let updateWeather = (lon=null,lat=null)=>{
             setTimeout(error=>{
                 let msg = error.responseJSON;
                 $('#errormessage').text(msg.message)
-                $('.notification').fadeIn(550);
+                $('.notification').slideDown(550); // or fadeIn
             }, 800, error)
         } else {
             let msg = error.responseJSON;
             $('#errormessage').text(msg.message)
-            $('.notification').fadeIn(550);
+            $('.notification').slideDown(550); //fadeIn
         }            
     })
 }
@@ -81,7 +81,7 @@ function geoFindMe() {
 
 let errormsgFadeOut = event=>{    
     let parent = event.currentTarget.parentElement;
-    $(parent).fadeOut(550);
+    $(parent).slideUp(550);  //fadeOut
     setTimeout(() => {
         $('#errormessage').text('');
     }, 600);    
