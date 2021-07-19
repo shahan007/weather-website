@@ -7,9 +7,9 @@ _API from [Open Weather](https://openweathermap.org/)_<br><br>
 
 ## How to run ?
 
-#### Fork the repo
+#### Clone the repo
 ```console
-$ git fork https://github.com/shahan007/weather-website.git
+$ git clone https://github.com/shahan007/weather-website.git
 ```
 
 #### Set up the environment
