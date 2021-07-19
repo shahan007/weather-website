@@ -8,8 +8,7 @@
     box-shadow: #95a5a6 0px 0px 6px 2px;
     color: white;
     line-height: 40px;
-    overflow: hidden;
-    animation: reveal 1 2s;
+    overflow: hidden;    
 }
 .notification .title{
     margin-right: 15px;
