@@ -25,7 +25,7 @@ let updateWeather = (lon=null,lat=null)=>{
         dataType: "json",
         contentType:'application/json'
     }).done(function (data) { 
-        $('.redmessage').text('');
+        $('.close').trigger('click');
         if ($('#weather-data > p').length === 1){            
             updateMessage()
         }
@@ -34,8 +34,8 @@ let updateWeather = (lon=null,lat=null)=>{
             place.value = data.name;
         }
         let temp = data.main;      
-        $('#weather-data').animate({ 'opacity': 0 }, 400, function () {
-            $(this).animate({ 'opacity': 1 }, 400);
+        $('#weather-data').animate({ 'opacity': 0 }, 500, function () {
+            $(this).animate({ 'opacity': 1 }, 500);
             $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
             $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
             $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
@@ -45,10 +45,18 @@ let updateWeather = (lon=null,lat=null)=>{
             $('#weather-data > p:nth-of-type(7) > span').text(data.weather[0].description);
         });
     }).fail(function (error) { 
-        let msg = error.responseJSON;        
-        $('.redmessage').animate({ 'opacity': 0 }, 400, function () {
-            $(this).text(msg.message).animate({ 'opacity': 1 }, 400);
-        });
+        if ($('.notification').css('display') === 'block'){
+            $('.close').trigger('click');
+            setTimeout(error=>{
+                let msg = error.responseJSON;
+                $('#errormessage').text(msg.message)
+                $('.notification').fadeIn(550);
+            }, 800, error)
+        } else {
+            let msg = error.responseJSON;
+            $('#errormessage').text(msg.message)
+            $('.notification').fadeIn(550);
+        }            
     })
 }
 
@@ -70,5 +78,15 @@ function geoFindMe() {
         navigator.geolocation.getCurrentPosition(success, error);
     }    
 }
+
+let errormsgFadeOut = event=>{    
+    let parent = event.currentTarget.parentElement;
+    $(parent).fadeOut(550);
+    setTimeout(() => {
+        $('#errormessage').text('');
+    }, 600);    
+}
+
 $('button').on('click', () => { updateWeather() });
+$('.close').click(errormsgFadeOut)
 geoFindMe();

@@ -7,6 +7,7 @@
     <title>Weather</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}" type=text/css>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/_errormessage.css')}}">
     {% set place=session.get('place') %}    
     {% set data=session.get('data') %}        
 </head>
@@ -21,7 +22,10 @@
         <button>fetch</button>
     </div>
     <br>
-    <p class="redmessage"></p>
+    <p class="notification error">
+        <span class="title">!&nbsp;&nbsp;&nbsp;&nbsp;Error</span>
+        <span id='errormessage'></span><span class="close">X</span>
+    </p>
     <hr>
     <h2>Current Weather</h2>
     <div id="weather-data">                

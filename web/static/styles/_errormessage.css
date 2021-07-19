@@ -1,0 +1,37 @@
+/* error  message*/
+.notification{
+    display: none;
+    width: 35rem;
+    height: 2.85rem;
+    border-radius: 0px 0px 5px 5px;
+    margin: 0 auto;
+    box-shadow: #95a5a6 0px 0px 6px 2px;
+    color: white;
+    line-height: 40px;
+    overflow: hidden;
+    animation: reveal 1 2s;
+}
+.notification .title{
+    margin-right: 15px;
+    padding: 0px 15px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+.notification .close{
+    background: rgba(255,255,255,0.2);
+    padding: 0px 15px;	
+    line-height: 40px;
+    float: right;        
+    color: white;
+}
+.notification .close:hover{
+    cursor: pointer;
+}
+
+.notification.error{
+background: #e74c3c;
+}   
+.notification.error .title{
+    background: #c0392b;
+} 
