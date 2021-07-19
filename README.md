@@ -1,7 +1,8 @@
 # weather-website
-_API from [Open Weather](https://openweathermap.org/)_<br><br>
+<br><br>
 
 ## Built With
+- _API from [Open Weather](https://openweathermap.org/)_
 - _Python version 3.8.0_
 - _HTML/CSS/JS/JQuery_ <br><br>
 
