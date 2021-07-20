@@ -1,3 +1,51 @@
+$(function () {
+    $('button').on('click', () => { updateWeather() });
+    $('.close').click(errormsgFadeOut);
+    geoFindMe();
+});
+
+const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+
+const weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+let dateTimeAccess = () => {
+    let dateAccessed = new Date();
+    let minutes = dateAccessed.getMinutes() < 11 ? "0" + dateAccessed.getMinutes() : dateAccessed.getMinutes();    
+    dateAccessed = weekday[dateAccessed.getDay()].toUpperCase() +
+        " | " +
+        months[dateAccessed.getMonth()].toUpperCase() +
+        " " +
+        dateAccessed.getDate() +
+        " | " +
+        dateAccessed.getHours() +
+        ":" +
+        minutes;
+    $('#date-accessed').animate({ 'opacity': 0 }, 550, function () {        
+        $(this).text(`Date Accessed: ${dateAccessed}`)
+        $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
+    });    
+}
+
 let updateMessage = () => {
     $('#weather-data').empty()
     let messaglist = [
@@ -12,6 +60,7 @@ let updateMessage = () => {
         $('#weather-data').append(`<p>${msg}: <span></span></p>`);
     })
 }
+
 let updateWeather = (lon=null,lat=null)=>{
     let place = document.getElementById('place');
     $.ajax({
@@ -34,7 +83,7 @@ let updateWeather = (lon=null,lat=null)=>{
             place.value = data.name;
         }
         let temp = data.main;      
-        $('#weather-data').animate({ 'opacity': 0 }, 550, function () {
+        $('#weather-data').animate({ 'opacity': 0 }, 550, function () {            
             $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
             $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
             $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
@@ -42,8 +91,9 @@ let updateWeather = (lon=null,lat=null)=>{
             $('#weather-data > p:nth-of-type(4) > span').text(temp.temp_max);
             $('#weather-data > p:nth-of-type(5) > span').text(temp.feels_like);
             $('#weather-data > p:nth-of-type(6) > span').text(temp.humidity);
-            $('#weather-data > p:nth-of-type(7) > span').text(data.weather[0].description);
-        });
+            $('#weather-data > p:nth-of-type(7) > span').text(data.weather[0].description);                        
+        });   
+        dateTimeAccess();
     }).fail(function (error) { 
         if ($('.notification').css('display') === 'block'){
             $('.close').trigger('click');
@@ -86,7 +136,3 @@ let errormsgFadeOut = event=>{
         $('#errormessage').text('');
     }, 600);    
 }
-
-$('button').on('click', () => { updateWeather() });
-$('.close').click(errormsgFadeOut)
-geoFindMe();
