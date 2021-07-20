@@ -67,7 +67,7 @@ let updateWeather = (lon=null,lat=null)=>{
         type: "POST",
         url: "/updateweather",
         data: JSON.stringify({ 
-            'place': place.value,
+            'place': place.value.trim().toLocaleLowerCase(),
             'longitude' : lon,
             'latitude':lat
         }),
@@ -85,7 +85,7 @@ let updateWeather = (lon=null,lat=null)=>{
         let temp = data.main;      
         $('#weather-data').animate({ 'opacity': 0 }, 550, function () {            
             $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
-            $('#weather-data > p:nth-of-type(1) > span').text(place.value[0].toUpperCase() + place.value.slice(1));
+            $('#weather-data > p:nth-of-type(1) > span').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
             $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
             $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
             $('#weather-data > p:nth-of-type(4) > span').text(temp.temp_max);
