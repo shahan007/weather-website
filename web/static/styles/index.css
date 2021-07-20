@@ -39,7 +39,7 @@ header > h2{
     font-size: 0.75rem;
 }
 
-div:nth-of-type(1) > div {
+#input-div {
     position: relative;
     width: 30%;
     margin: auto;
@@ -161,18 +161,6 @@ hr::before {
     text-align: center;
 }
 
-#weather-data > p{        
-    width: 25%;
-    padding: 10px 0;
-    margin: auto;    
-}
-
-#weather-data > p span{
-    font-weight: bold;     
-    float: right;   
-    transition: color 155ms ease-in-out;
-}
-
-#weather-data > p span:hover{
-    color: rgba(213, 44, 255, 0.65);    
+body > h2 {
+    padding-bottom: 0.75rem;
 }

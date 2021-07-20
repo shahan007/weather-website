@@ -48,17 +48,24 @@ let dateTimeAccess = () => {
 
 let updateMessage = () => {
     $('#weather-data').empty()
-    let messaglist = [
-        'Country/City',
-        'Current Temp',
-        'Minimun Temp',
-        'Maximum Temp',
-        'Feels like',
-        'Humidity', 'Clouds are'
-    ]
-    messaglist.forEach(msg => {
-        $('#weather-data').append(`<p>${msg}: <span></span></p>`);
+    let tempMesglist = [        
+        ['min-temp','Current Temp'],
+        ['mix-temp','Minimun Temp'],
+        ['feel-temp','Maximum Temp']         
+    ];
+    $('#weather-data').append("<div class='box'></div>");
+    $('.box').append("<div class='wave -one'></div>");
+    $('.box').append("<div class='wave -two'></div>");
+    $('.box').append("<div class='wave -three'></div>");
+    $('.box').append("<div class='weathercon'><i class='fas fa-sun' style='color: #d36326;'></i></div>");
+    $('.box').append("<div class='info'></div>");
+    $('.info').append('<h2 class="location"></h2>');
+    $('.info').append("<p id='current-temp' class='temp'>Current Temp: <span></span></p>");
+    tempMesglist.forEach(msg => {
+        $('.info').append(`<p id="${msg[0]}">${msg[1]}: <span></span></p>`);
     })
+    $('.info').append("<p id='humidity'>Humidity: <span></span></p>");
+    $('.info').append("<p id='clouds-like'>Clouds are: <span></span></p>");
 }
 
 let updateWeather = (lon=null,lat=null)=>{
@@ -85,13 +92,13 @@ let updateWeather = (lon=null,lat=null)=>{
         let temp = data.main;      
         $('#weather-data').animate({ 'opacity': 0 }, 550, function () {            
             $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
-            $('#weather-data > p:nth-of-type(1) > span').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
-            $('#weather-data > p:nth-of-type(2) > span').text(temp.temp);
-            $('#weather-data > p:nth-of-type(3) > span').text(temp.temp_min);
-            $('#weather-data > p:nth-of-type(4) > span').text(temp.temp_max);
-            $('#weather-data > p:nth-of-type(5) > span').text(temp.feels_like);
-            $('#weather-data > p:nth-of-type(6) > span').text(temp.humidity);
-            $('#weather-data > p:nth-of-type(7) > span').text(data.weather[0].description);                        
+            $('.location').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
+            $('#current-temp > span').text(temp.temp);
+            $('#min-temp > span').text(temp.temp_min);
+            $('#max-temp > span').text(temp.temp_max);
+            $('#feel-temp > span').text(temp.feels_like);
+            $('#humidity > span').text(temp.humidity);
+            $('#clouds-like > span').text(data.weather[0].description);
         });   
         dateTimeAccess();
     }).fail(function (error) { 
