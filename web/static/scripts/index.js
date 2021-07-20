@@ -49,9 +49,9 @@ let dateTimeAccess = () => {
 let updateMessage = () => {
     $('#weather-data').empty()
     let tempMesglist = [        
-        ['min-temp','Current Temp'],
-        ['mix-temp','Minimun Temp'],
-        ['feel-temp','Maximum Temp']         
+        ['min-temp','Minimun Temp'],
+        ['max-temp','Maximum Temp'],
+        ['feel-temp','Feels like']
     ];
     $('#weather-data').append("<div class='box'></div>");
     $('.box').append("<div class='wave -one'></div>");
@@ -93,10 +93,10 @@ let updateWeather = (lon=null,lat=null)=>{
         $('#weather-data').animate({ 'opacity': 0 }, 550, function () {            
             $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
             $('.location').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
-            $('#current-temp > span').text(temp.temp);
-            $('#min-temp > span').text(temp.temp_min);
-            $('#max-temp > span').text(temp.temp_max);
-            $('#feel-temp > span').text(temp.feels_like);
+            $('#current-temp > span').html(`${temp.temp}&deg;C`);
+            $('#min-temp > span').html(`${temp.temp_min}&deg;C`);
+            $('#max-temp > span').html(`${temp.temp_max}&deg;C`);
+            $('#feel-temp > span').html(`${temp.feels_like}&deg;C`);
             $('#humidity > span').text(temp.humidity);
             $('#clouds-like > span').text(data.weather[0].description);
         });   
