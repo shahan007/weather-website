@@ -1,6 +1,10 @@
 $(function () {
     $('button').on('click', () => { updateWeather() });
     $('.close').click(errormsgFadeOut);
+    $('p.notification').on('click', () => {
+        $('.close').trigger('click');
+        return false;
+    });
     geoFindMe();
 });
 
@@ -143,4 +147,5 @@ let errormsgFadeOut = event=>{
     setTimeout(() => {
         $('#errormessage').text('');
     }, 600);    
+    return false;
 }
