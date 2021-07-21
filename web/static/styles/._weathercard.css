@@ -8,14 +8,18 @@
     margin: auto;
     width: 23rem;    
     border-radius: 5px;
-    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 28px rgba(0, 0, 0, 0.25);    
     background: #a5bbdd;
     position: relative;
     overflow: hidden;
-    transform: translate3d(0, 0, 0);
-    /* min-width: 200px; */
+    transform: translate3d(0, 0, 0);    
     min-height: 28rem;
     margin-bottom: 5rem;
+    transition: all 450ms ease-in-out;
+}
+
+.box:hover{
+    box-shadow: 0 2px 28px  rgba(190,167,252,0.60);
 }
 
 .wave {
@@ -115,23 +119,57 @@
     margin-top: 1rem;    
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
 
     body > h2 , header > h2{
         font-size: 2rem;
     }
 
-    .box {
-        width: 80vw;
-        height: 38rem;
+    .info > h2.location{
+        margin-top: -5px;
     }
+
+    .box {
+        width: 70vw;
+        height: 30rem;
+    }
+
     .wave {
-        top: 100%;
+        top: 115%;
     }
 
     .info {
         font-size: 1.35rem;
     }
+
+    .info > p{
+        width: 84%;
+    }    
+
+    .info > p, .info > p > span{
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .box{
+        width: 80vw;
+        height: 28rem;
+    }
+
+    .info > p{
+        width: 85%;
+    }    
+
+    .info > p, .info > p > span{
+        font-size: 0.9rem;
+    }
+
+    .wave {
+        top: 115%;
+    }
+
 }
 
 @media (max-width:900px){
