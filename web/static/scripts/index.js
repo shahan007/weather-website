@@ -91,7 +91,8 @@ let updateWeather = (lon=null,lat=null)=>{
         }
         let temp = data.main;      
         $('#weather-data').animate({ 'opacity': 0 }, 550, function () {            
-            $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
+            $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500            
+            $('#weather-icon').attr('src',`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
             $('.location').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
             $('#current-temp > span').html(`${temp.temp}&deg;C`);
             $('#min-temp > span').html(`${temp.temp_min}&deg;C`);
