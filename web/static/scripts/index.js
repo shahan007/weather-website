@@ -57,7 +57,7 @@ let updateMessage = () => {
     $('.box').append("<div class='wave -one'></div>");
     $('.box').append("<div class='wave -two'></div>");
     $('.box').append("<div class='wave -three'></div>");
-    $('.box').append("<div class='weathercon'><i class='fas fa-sun' style='color: #d36326;'></i></div>");
+    $('.box').append("<div class='weathercon'><img src='' alt='weather icon based on current temperature' id='weather-icon'></div>");
     $('.box').append("<div class='info'></div>");
     $('.info').append('<h2 class="location"></h2>');
     $('.info').append("<p id='current-temp' class='temp'>Current Temp: <span></span></p>");

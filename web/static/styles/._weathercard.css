@@ -108,8 +108,11 @@
     height: 40%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 3em;
+    align-items: center;    
+}
+
+#weather-icon{
+    margin-top: 1rem;    
 }
 
 @media (max-width: 600px) {
@@ -125,9 +128,7 @@
     .wave {
         top: 100%;
     }
-    .weathercon {
-        font-size: 5em;
-    }
+
     .info {
         font-size: 1.35rem;
     }
