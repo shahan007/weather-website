@@ -9,7 +9,7 @@ html{
 /* scrollbar:start */
 
 body::-webkit-scrollbar {
-    width: 1em !important;
+    width: 1.1em !important;
 }
 
 body::-webkit-scrollbar-track {
