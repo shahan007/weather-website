@@ -14,7 +14,11 @@ def update_weather():
     place = data.get('place')
     longitude = data.get('longitude')
     latitude  = data.get('latitude')
-    error = jsonify({'message': f'{place or "Empty"} is an invalid location!'})
+    if len(place) > 13:
+        place_error = place[:13] + '....'
+    else:
+        place_error = place
+    error = jsonify({'message': f'{place_error or "Empty"} is an invalid location!'})
     error.status_code = 400    
     if latitude and longitude:
         data = request_weather_geo(longitude,latitude)
