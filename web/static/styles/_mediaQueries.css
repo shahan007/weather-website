@@ -9,6 +9,21 @@
     }    
 }
 
+@media (max-width: 550px) {
+
+    #input-div{
+        width: 50vw;
+    }
+
+    p.notification{
+        width: 25rem;
+    }
+
+    p.notification {
+        font-size: 0.75rem;        
+    }
+}
+
 @media (max-width: 500px) {
 
     body > h2 , header > h2{
@@ -43,6 +58,33 @@
 
 @media (max-width: 400px) {
 
+    #date-accessed{
+        line-height: 1.5;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    #input-div{
+        width: 65vw;
+    }
+
+    p.notification{
+        width: 90%;
+        font-size: 65%;     
+        margin-bottom: 1rem;             
+    }
+
+    p.notification > .title {
+        margin-right: 2%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    p.notification .close{
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+    
     .box{
         width: 80vw;
         height: 28rem;
@@ -60,4 +102,22 @@
         top: 115%;
     }
 
+}
+
+@media (max-width: 345px) {
+    p.notification{
+        width: 95%;
+        font-size: 55%;           
+    }
+
+    p.notification > .title {
+        margin-right: 1%;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    p.notification .close{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
 }
