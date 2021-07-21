@@ -1,0 +1,63 @@
+@media (max-width:900px){
+    #date-accessed{
+        text-align: center;
+        padding:12px 0;
+        position: relative;
+        display: block;
+        right: 0;
+        margin: auto;
+    }    
+}
+
+@media (max-width: 500px) {
+
+    body > h2 , header > h2{
+        font-size: 2rem;
+    }
+
+    .info > h2.location{
+        margin-top: -5px;
+    }
+
+    .box {
+        width: 70vw;
+        height: 30rem;
+    }
+
+    .wave {
+        top: 115%;
+    }
+
+    .info {
+        font-size: 1.35rem;
+    }
+
+    .info > p{
+        width: 84%;
+    }    
+
+    .info > p, .info > p > span{
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .box{
+        width: 80vw;
+        height: 28rem;
+    }
+
+    .info > p{
+        width: 85%;
+    }    
+
+    .info > p, .info > p > span{
+        font-size: 0.9rem;
+    }
+
+    .wave {
+        top: 115%;
+    }
+
+}
