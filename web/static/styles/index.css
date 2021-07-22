@@ -68,7 +68,7 @@ header > h2{
     margin: auto;
 }
 
-label, button,input{
+label, #fetchBtn,input{
     display: block;
     text-align:center;
     margin: 12px auto;
@@ -127,7 +127,7 @@ input:focus + span:before, input:focus + span:after{
     }
 }
 
-button {        
+#fetchBtn {        
     padding: 0.85rem 2rem;
     border: none;
     outline: none;
@@ -139,11 +139,11 @@ button {
     transition: all 150ms linear;
 }
 
-button:hover {
+#fetchBtn:hover {
     transform: scale(1);
 }
 
-button:hover::after {
+#fetchBtn:hover::after {
     content: '';
     display: block;
     width: 75px;
@@ -198,14 +198,17 @@ footer{
 }
 
 footer > a{          
-    margin: 2rem;    
-    margin-top: 1rem;
+    margin: 1rem 2rem;        
     text-align: center;
-    transition: all 150ms ease-in-out;
+    transition: all 200ms ease-in-out;    
 }
 
 footer > a > i{
     font-size: 1.5rem;
+}
+
+footer > a:hover{
+    margin-top: -0.35px;
 }
 
 #linkedin:hover{    
