@@ -91,7 +91,7 @@
     }
 
     .info > p{
-        width: 85%;
+        width: 75%;
     }    
 
     .info > p, .info > p > span{
@@ -120,4 +120,23 @@
         padding-left: 2%;
         padding-right: 2%;
     }
+
+    .info > p{
+        width: 80%;
+    }    
+
+    .info > p, .info > p > span{
+        font-size: 0.85rem;
+    }
+
+    .wave {
+        top: 118%;
+    }
+}
+
+@media (max-width: 300px){    
+    .info > p{
+        width: 90%;
+    }    
+
 }
