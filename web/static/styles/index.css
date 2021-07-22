@@ -209,6 +209,7 @@ footer > a > i{
 
 footer > a:hover{
     margin-top: -0.35px;
+    box-shadow:  0 10px 8px -1px #f7c1ffcc;   
 }
 
 #linkedin:hover{    
