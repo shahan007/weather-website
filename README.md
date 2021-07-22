@@ -20,6 +20,7 @@ $ export FLASK_DEBUG=1 (optional)
 $ export FLASK_APP=run.py
 $ export API_KEY=<YOUR_API_KEY>
 $ python -m venv venv
+$ source venv/Scripts/activate
 $ pip install -r requirements.txt
 ```
 #### Run the website
