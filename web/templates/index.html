@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}" type=text/css>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_weathercard.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_errormessage.css')}}">
@@ -55,6 +58,10 @@
             </div>            
         {% endif %}               
     </div>    
+    <footer>
+        <a id='github' href="https://github.com/shahan007" target="_blank"><i class="fab fa-github"></i></a>
+        <a id='linkedin' href="https://www.linkedin.com/in/shahan-alam-71a161206/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{url_for('static',filename='scripts/index.js')}}"></script>
 </body>

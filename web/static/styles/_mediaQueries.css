@@ -102,6 +102,9 @@
         top: 115%;
     }
 
+    a{
+        width: 50%;                    
+    }    
 }
 
 @media (max-width: 345px) {

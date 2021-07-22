@@ -187,3 +187,31 @@ hr::before {
 body > h2 {
     padding-bottom: 0.8rem;
 }
+
+footer{          
+    width: 100vw;    
+    max-width: 100%;        
+    display: flex;
+    flex-flow: row wrap;        
+    justify-content: center;                                
+    align-items: center;    
+}
+
+footer > a{          
+    margin: 2rem;    
+    margin-top: 1rem;
+    text-align: center;
+    transition: all 150ms ease-in-out;
+}
+
+footer > a > i{
+    font-size: 1.5rem;
+}
+
+#linkedin:hover{    
+    color: #0e76a8;
+}
+
+#github:hover{
+    color: #000000;
+}
