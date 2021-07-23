@@ -1,11 +1,12 @@
 $(function () {
-    $('button').on('click', () => { updateWeather() });
+    $('#fetchBtn').on('click', () => { updateWeather() });
     $('.close').click(errormsgFadeOut);
     $('p.notification').on('click', () => {
         $('.close').trigger('click');
         return false;
     });
     geoFindMe();
+    scrollBackTop();
 });
 
 const months = [
@@ -132,10 +133,11 @@ function geoFindMe() {
 
     function error() {
         console.log('Unable to retrieve your location');
+        dateTimeAccess();
     }
 
     if (!navigator.geolocation) {
-        console.log("Geolocation is not supported by this browser.");
+        console.log("Geolocation is not supported by this browser.");        
     } else {
         navigator.geolocation.getCurrentPosition(success, error);
     }    
@@ -148,4 +150,29 @@ let errormsgFadeOut = event=>{
         $('#errormessage').text('');
     }, 600);    
     return false;
+}
+
+let scrollBackTop = () => {
+    let footerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                scrollToTopBtn.classList.add("showBtn");
+            } else {
+                scrollToTopBtn.classList.remove("showBtn");
+            }
+        });
+    }
+
+    let scrollToTop = () => {
+        rootElement.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+    let footer = document.querySelector("footer");
+    let scrollToTopBtn = document.querySelector(".scrollToTopBtn");
+    let rootElement = document.documentElement;
+    scrollToTopBtn.addEventListener("click", scrollToTop);
+    let footerObserver = new IntersectionObserver(footerCallback);
+    footerObserver.observe(footer);    
 }

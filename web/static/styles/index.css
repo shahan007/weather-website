@@ -182,10 +182,39 @@ hr::before {
     font-weight: bold;
     font-style: italic;
     text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 body > h2 {
     padding-bottom: 0.8rem;
+}
+
+.scrollToTopBtn {
+    background-color: rgba(132, 81, 204, 0.6);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 40px;
+    width: 40px;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 2.5rem;  
+    z-index: 100;  
+    opacity: 0;  
+    transform: translateY(100px);  
+    transition: all 500ms ease-in-out;
+}
+
+.showBtn {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+.showBtn:hover{
+    box-shadow:  0 10px 10px -3px #f7c1ffcc;       
 }
 
 footer{          
@@ -205,10 +234,14 @@ footer > a{
 
 footer > a > i{
     font-size: 1.5rem;
+    transition: all 200ms ease-in-out;    
 }
 
 footer > a:hover{
     margin-top: -0.35px;
+}
+
+footer > a > i:hover{    
     box-shadow:  0 10px 8px -1px #f7c1ffcc;   
 }
 
