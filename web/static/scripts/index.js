@@ -217,9 +217,9 @@ let updateForecastSlider = () => {
         $('#place').val(document.querySelector('.location').textContent);
         let place = document.getElementById('place');
         if (v_str.length == 1 ){
-            p.innerText = `0${v_str}:00`;
+            p.innerText = `+0${v_str}:00 hrs`;
         } else {
-            p.innerText = `${v_str}:00`;
+            p.innerText = `+${v_str}:00 hrs`;
         }        
         if (!cachedSliderData) {
             $.ajax({
