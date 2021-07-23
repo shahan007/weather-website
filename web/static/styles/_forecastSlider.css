@@ -1,0 +1,21 @@
+#slider-forecast{
+    position: absolute;   
+    top: 0;
+    padding:0;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;   
+    left: 1.8rem;
+    /* border: 2px solid red;  */
+    border-radius: 4px;       
+    width: 10%;
+    height: 100%;
+}
+
+#rangeInput{
+    writing-mode: bt-lr !important; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    height: 65%;
+    padding: 0;
+}

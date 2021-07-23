@@ -1,3 +1,7 @@
+#weather-data{
+    position: relative;
+}
+
 .box , .box * {
     padding: 0;
     margin: 0;

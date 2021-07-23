@@ -11,6 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}" type=text/css>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_weathercard.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/_forecastSlider.css')}}">    
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_errormessage.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_mediaQueries.css')}}">
     {% set place=session.get('place') %}    
@@ -22,12 +23,12 @@
         <span id='date-accessed'></span>
     </header>    
     <div>
-        <label for="place">Country/City</label>        
+        <label for="place">City/Country</label>        
         <div id='input-div'>
-            <input type="text" placeholder="Singapore" name="place" id="place">
+            <input title='City,CountryCode' type="text" placeholder="Dehli,IN" name="place" id="place">
             <span></span>
         </div>
-        <button id="fetchBtn">fetch</button>
+        <button id="fetchBtn" >fetch</button>
     </div>
     <br>
     <p class="notification error" title="click me to close !">
@@ -55,7 +56,12 @@
                     <p id="humidity">Humidity: <span>{{temp.get('humidity')}}</span></p>
                     <p id="clouds-like">Clouds are: <span>{{data.get('weather')[0].get("description")}}</span></p>
                 </div>
-            </div>            
+            </div>       
+            <div id="slider-forecast">
+                <label for="rangeInput">Time</label>
+                <input orient="vertical" id="rangeInput" type="range" step='3'>
+                <p id="forecast-time"></p>
+            </div>     
         {% endif %}               
     </div>    
     <div id="add-padding"></div>

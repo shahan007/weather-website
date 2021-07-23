@@ -6,7 +6,10 @@ $(function () {
         return false;
     });
     geoFindMe();
-    scrollBackTop();
+    scrollBackTop();    
+    if ($('.box').length) {
+        updateForecastSlider();
+    }
 });
 
 const months = [
@@ -71,6 +74,24 @@ let updateMessage = () => {
     })
     $('.info').append("<p id='humidity'>Humidity: <span></span></p>");
     $('.info').append("<p id='clouds-like'>Clouds are: <span></span></p>");
+    $('#weather-data').append("<div id='slider-forecast'></div>");
+    $('#slider-forecast').append('<label for="rangeInput">Time</label>');
+    $('#slider-forecast').append('<input orient="vertical" id="rangeInput" type="range" step="3">');
+    $('#slider-forecast').append('<p id="forecast-time"></p>');
+}
+
+let updateWeatherMsg = (place,data,temp) => {
+    $('#weather-data').animate({ 'opacity': 0 }, 550, function () {
+        $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500            
+        $('#weather-icon').attr('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
+        $('.location').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
+        $('#current-temp > span').html(`${temp.temp}&deg;C`);
+        $('#min-temp > span').html(`${temp.temp_min}&deg;C`);
+        $('#max-temp > span').html(`${temp.temp_max}&deg;C`);
+        $('#feel-temp > span').html(`${temp.feels_like}&deg;C`);
+        $('#humidity > span').text(temp.humidity);
+        $('#clouds-like > span').text(data.weather[0].description);
+    });
 }
 
 let updateWeather = (lon=null,lat=null)=>{
@@ -86,27 +107,19 @@ let updateWeather = (lon=null,lat=null)=>{
         dataType: "json",
         contentType:'application/json'
     }).done(function (data) { 
-        $('.close').trigger('click');
+        $('.close').trigger('click');        
         if ($('#weather-data > p').length === 1){            
-            updateMessage()
+            updateMessage();                      
+            updateForecastSlider();
         }
         data = data.data;        
         if (lon && lat) {
             place.value = data.name;
         }
-        let temp = data.main;      
-        $('#weather-data').animate({ 'opacity': 0 }, 550, function () {            
-            $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500            
-            $('#weather-icon').attr('src',`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-            $('.location').text(place.value.trim()[0].toUpperCase() + place.value.trim().toLocaleLowerCase().slice(1));
-            $('#current-temp > span').html(`${temp.temp}&deg;C`);
-            $('#min-temp > span').html(`${temp.temp_min}&deg;C`);
-            $('#max-temp > span').html(`${temp.temp_max}&deg;C`);
-            $('#feel-temp > span').html(`${temp.feels_like}&deg;C`);
-            $('#humidity > span').text(temp.humidity);
-            $('#clouds-like > span').text(data.weather[0].description);
-        });   
-        dateTimeAccess();
+        let temp = data.main;            
+        cachedSliderData = null;
+        updateWeatherMsg(place,data,temp);
+        dateTimeAccess();               
     }).fail(function (error) { 
         if ($('.notification').css('display') === 'block'){
             $('.close').trigger('click');
@@ -175,4 +188,56 @@ let scrollBackTop = () => {
     scrollToTopBtn.addEventListener("click", scrollToTop);
     let footerObserver = new IntersectionObserver(footerCallback);
     footerObserver.observe(footer);    
+}
+
+const availhours = [0, 3, 6, 9, 12, 15, 18, 21];
+let cachedSliderData = null;
+
+let updateForecastSlider = () => {
+    const rangeInput = document.querySelector('#rangeInput');
+    let foreCastHrs = [];
+    let cHr = new Date().getHours();
+    if (availhours.includes(cHr)) {
+        foreCastHrs.push(...[cHr + 3, cHr + 6, cHr + 9]);
+    } else {
+        while (cHr % 3 != 0) {
+            cHr += 1;
+        }
+        foreCastHrs.push(...[cHr, cHr + 3, cHr + 6])
+    }
+
+    rangeInput.setAttribute('min', foreCastHrs[0]);
+    rangeInput.setAttribute('max', foreCastHrs[2]);
+    rangeInput.addEventListener('change', event => {
+        $('.close').trigger('click');
+        let p = document.querySelector('#forecast-time');
+        let v = Number(event.currentTarget.value);
+        let v_str = String(v%24);
+        let index = foreCastHrs.indexOf(v);
+        $('#place').val(document.querySelector('.location').textContent);
+        let place = document.getElementById('place');
+        if (v_str.length == 1 ){
+            p.innerText = `0${v_str}:00`;
+        } else {
+            p.innerText = `${v_str}:00`;
+        }        
+        if (!cachedSliderData) {
+            $.ajax({
+                type: "POST",
+                url: "/updateforecast",
+                data: JSON.stringify({
+                    'next_hr': foreCastHrs[0] % 24
+                }),
+                dataType: "json",
+                contentType: 'application/json'
+            }).done(data => {                
+                cachedSliderData = data;                                
+                updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
+            }).fail(error => {
+                console.log(error);
+            })
+        } else {
+            updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
+        }
+    })
 }
