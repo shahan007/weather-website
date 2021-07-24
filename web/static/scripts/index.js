@@ -78,6 +78,7 @@ let updateMessage = () => {
     $('#slider-forecast').append('<label for="rangeInput">Time</label>');
     $('#slider-forecast').append('<input orient="vertical" id="rangeInput" type="range" step="3">');
     $('#slider-forecast').append('<p id="forecast-time"></p>');
+    $('#slider-forecast').append('<button id="fetch-current">reload</button>');
 }
 
 let updateWeatherMsg = (place,data,temp) => {
@@ -230,8 +231,8 @@ let updateForecastSlider = () => {
                 }),
                 dataType: "json",
                 contentType: 'application/json'
-            }).done(data => {                
-                cachedSliderData = data;                                
+            }).done(data => {                              
+                cachedSliderData = data;
                 updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
             }).fail(error => {
                 console.log(error);
@@ -239,5 +240,8 @@ let updateForecastSlider = () => {
         } else {
             updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
         }
+    })
+    $('#fetch-current').on('click',()=>{        
+        $('#fetchBtn').trigger('click');
     })
 }
