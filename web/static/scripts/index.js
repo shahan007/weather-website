@@ -127,7 +127,12 @@ let updateWeather = (lon=null,lat=null)=>{
         let temp = data.main;            
         cachedSliderData = null;
         updateWeatherMsg(place,data,temp);
-        dateTimeAccess();                       
+        dateTimeAccess();    
+        $('#forecast-time').animate({ 'opacity': 0 }, 300, function () {
+            $('#forecast-time').text('');
+            $(this).text('');
+            $(this).animate({ 'opacity': 1 }, 300);
+        });
     }).fail(function (error) { 
         if ($('.notification').css('display') === 'block'){
             $('.close').trigger('click');
@@ -251,9 +256,5 @@ let updateForecastSlider = () => {
     })
     $('#fetch-current').on('click',()=>{           
         $('#fetchBtn').trigger('click');
-        $('#forecast-time').animate({ 'opacity': 0 }, 300, function () {
-            $(this).text('');
-            $(this).animate({ 'opacity': 1 }, 300); 
-        });
     })
 }
