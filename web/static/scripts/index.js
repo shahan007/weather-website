@@ -82,7 +82,7 @@ let updateMessage = () => {
     $('.info').append("<p id='humidity'>Humidity: <span></span></p>");
     $('.info').append("<p id='clouds-like'>Clouds are: <span></span></p>");
     $('#weather-data').append("<div id='slider-forecast'></div>");
-    $('#slider-forecast').append('<label for="rangeInput">Time</label>');
+    $('#slider-forecast').append('<label for="rangeInput">+3hr Forecast</label>');
     $('#slider-forecast').append('<input orient="vertical" id="rangeInput" type="range" step="3">');
     $('#slider-forecast').append('<p id="forecast-time"></p>');
     $('#slider-forecast').append('<button id="fetch-current">current</button>');
