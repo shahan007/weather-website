@@ -247,6 +247,7 @@ let updateForecastSlider = () => {
         } else {
             updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
         }
+        dateTimeAccess();
     })
     $('#fetch-current').on('click',()=>{           
         $('#fetchBtn').trigger('click');
