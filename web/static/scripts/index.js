@@ -100,6 +100,9 @@ let updateWeatherMsg = (place,data,temp) => {
         $('#feel-temp > span').html(`${temp.feels_like}&deg;C`);
         $('#humidity > span').text(temp.humidity);
         $('#clouds-like > span').text(data.weather[0].description);
+        setTimeout(()=>{
+            $('#loading').hide();
+        },1500)        
     });
 }
 
@@ -155,10 +158,7 @@ function geoFindMe() {
     function success(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        $('#loading').show();
-        setTimeout(() => {
-            $('#loading').hide();
-        }, 3500)
+        $('#loading').show();        
         updateWeather(longitude,latitude);
     }
 
@@ -262,8 +262,5 @@ let updateForecastSlider = () => {
     $('#fetch-current').on('click',()=>{           
         $('#fetchBtn').trigger('click');
         $('#loading').show();
-        setTimeout(() => {
-            $('#loading').hide();
-        }, 2200)
     })
 }
