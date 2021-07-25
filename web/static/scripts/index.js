@@ -10,6 +10,13 @@ $(function () {
     if ($('.box').length) {
         updateForecastSlider();
     }
+    $("#place").focusout(function () {
+        if ($(this).val() != "") {
+            $(this).addClass("has-content");
+        } else {
+            $(this).removeClass("has-content");
+        }
+    })
 });
 
 const months = [
@@ -120,7 +127,7 @@ let updateWeather = (lon=null,lat=null)=>{
         let temp = data.main;            
         cachedSliderData = null;
         updateWeatherMsg(place,data,temp);
-        dateTimeAccess();               
+        dateTimeAccess();                       
     }).fail(function (error) { 
         if ($('.notification').css('display') === 'block'){
             $('.close').trigger('click');
@@ -231,8 +238,8 @@ let updateForecastSlider = () => {
                 }),
                 dataType: "json",
                 contentType: 'application/json'
-            }).done(data => {                              
-                cachedSliderData = data;
+            }).done(data => {                
+                cachedSliderData = data;                
                 updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
             }).fail(error => {
                 console.log(error);
@@ -241,7 +248,11 @@ let updateForecastSlider = () => {
             updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
         }
     })
-    $('#fetch-current').on('click',()=>{        
+    $('#fetch-current').on('click',()=>{           
         $('#fetchBtn').trigger('click');
+        $('#forecast-time').animate({ 'opacity': 0 }, 300, function () {
+            $(this).text('');
+            $(this).animate({ 'opacity': 1 }, 300); 
+        });
     })
 }

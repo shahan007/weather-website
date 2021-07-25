@@ -49,6 +49,10 @@ h2{
     text-align: center;
 }
 
+header {
+    margin-bottom: 1rem;
+}
+
 header > h2{
     margin-top: 0;
     padding-top: 3rem;
@@ -66,15 +70,16 @@ header > h2{
     position: relative;
     width: 30%;
     margin: auto;
+    margin-top: 3.5rem;
 }
 
-label, #fetchBtn,input{
+#fetchBtn, #place{
     display: block;
     text-align:center;
     margin: 12px auto;
 }
 
-input{
+#place{
     width: 100%;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -85,11 +90,10 @@ input{
     color: rgba(51, 51, 51, 0.75);     
     padding: 7px 0;
     box-sizing: border-box; 
-    background-blend-mode: lighten;
-    
+    background-blend-mode: lighten;    
 }
 
-input + span{
+#place ~ span{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -97,7 +101,8 @@ input + span{
     height: 2px;
     z-index: 99;
 }
-input + span:before, input + span:after{
+
+#place ~ span:before, #place ~ span:after{
     content: "";
     position: absolute;
     bottom: 0;
@@ -108,13 +113,33 @@ input + span:before, input + span:after{
     transition: 0.5s;
 }
 
-input + span:after{
+#place ~ span:after{
     left: auto;
     right: 0;
 }
-input:focus + span:before, input:focus + span:after{
+
+#place:focus ~ span:before, #place:focus ~ span:after, .has-content ~ span:before, .has-content ~ span:after{
     width: 50%;
     transition: 0.5s;
+}
+
+#place ~ label{
+    position: absolute; 
+    left: 0; 
+    width: 100%; 
+    top: 9px; 
+    color: transparent;    
+    transition: all 380ms ease-in-out; 
+    z-index: -1; 
+    letter-spacing: 0.5px;
+}
+
+#place:focus ~ label, .has-content ~ label{
+    top: -1.5rem;
+    font-size: 1.1rem; 
+    font-weight: 600;
+    color: rgb(239, 112, 253); 
+    transition: all 380ms ease-in-out; 
 }
 
 @keyframes shine {
@@ -184,10 +209,6 @@ hr::before {
     text-align: center;
     margin-top: 3rem;
     margin-bottom: 3rem;
-}
-
-body > h2 {
-    padding-bottom: 0.8rem;
 }
 
 .scrollToTopBtn {
