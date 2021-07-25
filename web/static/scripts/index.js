@@ -158,7 +158,7 @@ function geoFindMe() {
         $('#loading').show();
         setTimeout(() => {
             $('#loading').hide();
-        }, 2500)
+        }, 3500)
         updateWeather(longitude,latitude);
     }
 
