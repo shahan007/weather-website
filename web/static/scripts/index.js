@@ -85,7 +85,7 @@ let updateMessage = () => {
     $('#slider-forecast').append('<label for="rangeInput">Time</label>');
     $('#slider-forecast').append('<input orient="vertical" id="rangeInput" type="range" step="3">');
     $('#slider-forecast').append('<p id="forecast-time"></p>');
-    $('#slider-forecast').append('<button id="fetch-current">reload</button>');
+    $('#slider-forecast').append('<button id="fetch-current">current</button>');
 }
 
 let updateWeatherMsg = (place,data,temp) => {
