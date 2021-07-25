@@ -1,4 +1,7 @@
 $(function () {
+    setTimeout(()=>{
+        $('#loading').hide();
+    },2000)
     $('#fetchBtn').on('click', () => { updateWeather() });
     $('.close').click(errormsgFadeOut);
     $('p.notification').on('click', () => {
@@ -256,5 +259,9 @@ let updateForecastSlider = () => {
     })
     $('#fetch-current').on('click',()=>{           
         $('#fetchBtn').trigger('click');
+        $('#loading').show();
+        setTimeout(() => {
+            $('#loading').hide();
+        }, 2200)
     })
 }

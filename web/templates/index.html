@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" />        
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/_fullpageloader.css')}}" type=text/css>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}" type=text/css>
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_weathercard.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/_forecastSlider.css')}}">    
@@ -18,6 +19,9 @@
     {% set data=session.get('data') %}        
 </head>
 <body>
+    <div id="loading">
+        <div id="loader">Loading...</div>
+    </div>
     <header>
         <h2>Weather</h2>
         <span id='date-accessed'></span>
