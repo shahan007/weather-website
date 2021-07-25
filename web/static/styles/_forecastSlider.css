@@ -1,4 +1,9 @@
-#slider-forecast{
+#slider-forecast *{
+    color:#4e4e4e;
+}
+
+#slider-forecast{    
+    font-weight: bolder;
     position: absolute;   
     top: 0;
     padding:0;
@@ -14,6 +19,10 @@
     text-align: center;
 }
 
+#slider-forecast > label{
+    padding-bottom: 1rem;
+}
+
 #rangeInput{
     writing-mode: bt-lr !important; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
@@ -21,7 +30,10 @@
     padding: 0;
 }
 
-#fetch-current{    
+#fetch-current{        
+    color: rgb(255, 255, 255);    
+    letter-spacing: 0.5px;
+    padding: 2px;
     outline: none;
     width: 2.5rem;
     height: 2.5rem;
@@ -33,4 +45,12 @@
     padding: 0;
     cursor: pointer;
     margin-top: 5%;
+    background-image: linear-gradient(135deg, #d8c2ff, #c4aeff, #b09aeb);    
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.3), -2px -2px 9px rgba(255, 255, 255, 0.3);    
+    transition: all 250ms ease-in-out;
+}
+
+#fetch-current:hover{
+    transform: scale(1.01);
+    box-shadow: 2px 4px 14px -1.5px rgba(0, 0, 0, 0.45);    
 }
