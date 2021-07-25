@@ -1,7 +1,5 @@
 $(function () {
-    setTimeout(()=>{
-        $('#loading').hide();
-    },2000)
+    $('#loading').hide();
     $('#fetchBtn').on('click', () => { updateWeather() });
     $('.close').click(errormsgFadeOut);
     $('p.notification').on('click', () => {
@@ -19,7 +17,7 @@ $(function () {
         } else {
             $(this).removeClass("has-content");
         }
-    })
+    })    
 });
 
 const months = [
@@ -157,6 +155,10 @@ function geoFindMe() {
     function success(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
+        $('#loading').show();
+        setTimeout(() => {
+            $('#loading').hide();
+        }, 2500)
         updateWeather(longitude,latitude);
     }
 
