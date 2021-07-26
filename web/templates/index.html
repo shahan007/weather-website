@@ -43,7 +43,7 @@
     <h2>Current Weather</h2>
     <div id="weather-data">                
         {% if not(place and data) %}
-            <p class="redmessage">SORRY! Please insert the city/country above</p>
+            <p class="redmessage"><span>Ooops!</span><br><br> please turn on your <span>location</span> & reload <span>|</span> enter the <span>City,CountryCode</span> above</p>
         {% else %}            
             {% set temp = data.get('main') %}
             <div class='box'>
