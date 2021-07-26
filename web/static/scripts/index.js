@@ -62,6 +62,16 @@ let dateTimeAccess = () => {
     });    
 }
 
+let setWeatherTitle = (newTitle=null)=>{
+    if (!newTitle){
+        newTitle = "Current Weather";
+    } 
+    $('body > h2').animate({ 'opacity': 0 }, 500, function () {
+        $(this).text(newTitle);
+        $(this).animate({ 'opacity': 1 }, 500);   // with slideOut timing is 550 else with fading error is 500
+    });    
+}
+
 let updateMessage = () => {
     $('#weather-data').empty()
     let tempMesglist = [        
@@ -119,7 +129,8 @@ let updateWeather = (lon=null,lat=null)=>{
         dataType: "json",
         contentType:'application/json'
     }).done(function (data) { 
-        $('.close').trigger('click');        
+        $('.close').trigger('click');   
+        setWeatherTitle();
         if ($('#weather-data > p').length === 1){            
             updateMessage();                      
             updateForecastSlider();
@@ -128,10 +139,10 @@ let updateWeather = (lon=null,lat=null)=>{
         if (lon && lat) {
             place.value = data.name;
         }
-        let temp = data.main;            
+        let temp = data.main;         
         cachedSliderData = null;
         updateWeatherMsg(place,data,temp);
-        dateTimeAccess();    
+        dateTimeAccess();            
         $('#forecast-time').animate({ 'opacity': 0 }, 300, function () {
             $('#forecast-time').text('');
             $(this).text('');
@@ -149,7 +160,10 @@ let updateWeather = (lon=null,lat=null)=>{
             let msg = error.responseJSON;
             $('#errormessage').text(msg.message)
             $('.notification').slideDown(550); //fadeIn
-        }            
+        }
+        setTimeout(() => {
+            $('#loading').hide();
+        }, 1650);
     })
 }
 
@@ -257,10 +271,11 @@ let updateForecastSlider = () => {
         } else {
             updateWeatherMsg(place, cachedSliderData[index], cachedSliderData[index].main);
         }
+        setWeatherTitle(`Weather @${p.textContent.slice(1)}`);
         dateTimeAccess();
-    })
+    });
     $('#fetch-current').on('click',()=>{           
         $('#fetchBtn').trigger('click');
         $('#loading').show();
-    })
+    });
 }
