@@ -1,8 +1,10 @@
 from flask import (Flask , request , render_template , session,url_for,jsonify)
 from .request_weather import request_weather, request_weather_geo , request_weather_forecast
 from werkzeug.exceptions import HTTPException
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 @app.route("/",methods=["GET"])
 def index():       
