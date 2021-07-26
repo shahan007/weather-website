@@ -66,9 +66,9 @@ let setWeatherTitle = (newTitle=null)=>{
     if (!newTitle){
         newTitle = "Current Weather";
     } 
-    $('body > h2').animate({ 'opacity': 0 }, 500, function () {
+    $('body > h2').animate({ 'opacity': 0 }, 550, function () {
         $(this).text(newTitle);
-        $(this).animate({ 'opacity': 1 }, 500);   // with slideOut timing is 550 else with fading error is 500
+        $(this).animate({ 'opacity': 1 }, 550);   // with slideOut timing is 550 else with fading error is 500
     });    
 }
 
