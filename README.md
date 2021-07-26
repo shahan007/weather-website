@@ -1,5 +1,5 @@
 # weather-website
-_A simple web application to display the current weather_
+_A simple single page web application to display the current weather and 3 times +3hr weather forecast_
 <br><br>
 
 ## Built With
