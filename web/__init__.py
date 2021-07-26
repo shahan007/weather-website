@@ -1,15 +1,16 @@
 from flask import (Flask , request , render_template , session,url_for,jsonify)
 from .request_weather import request_weather, request_weather_geo , request_weather_forecast
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 app.secret_key = b"hello input any secret key"
 
 @app.route("/",methods=["GET"])
-def index():
+def index():       
     return render_template('index.html')
 
 @app.route('/updateweather',methods=["POST"])
-def update_weather():
+def update_weather():        
     data      = request.get_json()
     place = data.get('place')
     longitude = data.get('longitude')
@@ -38,7 +39,7 @@ def update_weather():
         return error
 
 @app.route('/updateforecast',methods=["POST"])
-def updateforecast():
+def updateforecast():            
     next_hr = int(request.get_json().get('next_hr'))
     data = []
     forecastmsg = request_weather_forecast(place=session['place'])    
@@ -49,9 +50,14 @@ def updateforecast():
     data.extend(msg[i:i+3])
     return jsonify(data)
     
-@app.errorhandler(404)
-def handle_404(msg):    
-    return f"""            
-            <h3>{msg}</h3>
-            <a href="{url_for('index')}">GO BACK</a>
-            """
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    
+    msg = {
+        "code": e.code,
+        "name": e.name,
+        "description": e.description                    
+    }    
+    return render_template('error.html',msg=msg)
