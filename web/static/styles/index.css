@@ -272,6 +272,7 @@ footer > a{
 
 footer > a > i{
     font-size: 1.5rem;
+    color: rgb(85, 26, 139);
     transition: all 200ms ease-in-out;    
 }
 
@@ -283,10 +284,10 @@ footer > a > i:hover{
     box-shadow:  0 10px 8px -1px #f7c1ffcc;   
 }
 
-#linkedin:hover{    
+#linkedin>i:hover{    
     color: #0e76a8;
 }
 
-#github:hover{
+#github>i:hover{
     color: #000000;
 }
