@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&#127772; Weather</title>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/_error.css')}}" type=text/css>
+</head>
+<body>                
+    <div class="error">
+        <div class="container-fluid">
+            <div class="col-xs-12 ground-color text-center">
+                <div class="container-error-404">
+                    <div class="clip">
+                        <div class="shadow"><span class="digit thirdDigit"></span></div>
+                    </div>
+                    <div class="clip">
+                        <div class="shadow"><span class="digit secondDigit"></span></div>
+                    </div>
+                    <div class="clip">
+                        <div class="shadow"><span class="digit firstDigit"></span></div>
+                    </div>
+                    <div class="msg">OH!<span class="triangle"></span></div>
+                </div>
+                <h2 class="h1">Ooops! Sorry!</h2>
+                <p id="error-msg-name">{{msg['name']}}</p>
+            </div>
+        </div>
+    </div>    
+    <div id="go-back">
+        <button id="go-back-btn">
+            <span>
+                <a href="{{url_for('index')}}">Go Back</a>
+            </span>            
+        </button>
+    </div>
+    <p id="error-msg"><span id="error-msg-code">{{msg['code']}}</span><span id="error-msg-decr">{{msg['description']}}</span></p>
+    <script src="{{url_for('static',filename='scripts/error.js')}}"></script>
+</body>
+</html>
