@@ -143,10 +143,10 @@ let updateWeather = (lon=null,lat=null)=>{
         cachedSliderData = null;
         updateWeatherMsg(place,data,temp);
         dateTimeAccess();            
-        $('#forecast-time').animate({ 'opacity': 0 }, 300, function () {
+        $('#forecast-time').animate({ 'opacity': 0 }, 400, function () {
             $('#forecast-time').text('');
             $(this).text('');
-            $(this).animate({ 'opacity': 1 }, 300);
+            $(this).animate({ 'opacity': 1 }, 400);
         });
     }).fail(function (error) { 
         if ($('.notification').css('display') === 'block'){

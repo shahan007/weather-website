@@ -1,9 +1,10 @@
 from flask import (Flask , request , render_template , session,url_for,jsonify)
 from .request_weather import request_weather, request_weather_geo , request_weather_forecast
+import os
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
-app.secret_key = b"hello input any secret key"
+app.secret_key = os.urandom(16)
 
 @app.route("/",methods=["GET"])
 def index():       
