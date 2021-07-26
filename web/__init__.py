@@ -37,7 +37,7 @@ def update_weather():
     else:
         return error
 
-@app.route('/updateforecast',methods=["POST","GET"])
+@app.route('/updateforecast',methods=["POST"])
 def updateforecast():
     next_hr = int(request.get_json().get('next_hr'))
     data = []
