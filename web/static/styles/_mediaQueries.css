@@ -21,8 +21,12 @@
         width: 50vw;
     }
 
+    .notification *{
+        letter-spacing: 1px;
+    }
+
     p.notification{
-        width: 25rem;
+        width: 90%;
     }
 
     p.notification {
@@ -102,6 +106,17 @@
     }
 }
 
+@media (max-width: 430px) {
+    .info > p{
+        width: 86%;
+    }    
+
+    .info > p, .info > p > span{
+        font-size: 1.05rem;
+    }
+
+}
+
 @media (max-width: 400px) {
 
     #date-accessed{
@@ -114,8 +129,11 @@
         width: 65vw;
     }
 
-    p.notification{
-        width: 90%;
+    .notification *{
+        letter-spacing: 0.65px;
+    }
+
+    p.notification{        
         font-size: 65%;     
         margin-bottom: 1rem;             
     }
@@ -138,11 +156,15 @@
     }
 
     .info > p{
-        width: 75%;
+        width: 80%;
     }    
 
     .info > p, .info > p > span{
-        font-size: 0.9rem;
+        font-size: 0.91rem;
+    }
+
+    p#clouds-like > span{
+        letter-spacing: 1px;
     }
 
     .wave {
@@ -187,18 +209,18 @@
         padding-right: 2%;
     }
 
-    .info > p{
-        width: 80%;
-    }    
-
     .info > p, .info > p > span{
-        font-size: 0.85rem;
+        letter-spacing: 1px;
     }
 
+    p#clouds-like > span{
+        letter-spacing: 0.6px;
+    }
+    
     .box{
-        width: 73vw;
+        width: 76vw;
         height: 28rem;
-        margin-right: 3vw;
+        margin-right: 2.5vw;
     }
 
     #slider-forecast{
@@ -216,14 +238,16 @@
 
 @media (max-width: 300px){    
     .info > p{
-        width: 90%;
+        width: 85%;
     }    
 
     .box{
-        width: 70vw;    
+        width: 73vw;    
         height: 23rem;
+        margin-right: 3vw;
         min-height:26rem;
     }
+
     .info{
         height: 55%;
     }
@@ -241,7 +265,7 @@
     }
 
     .info > p, .info > p > span{
-        font-size: 0.70rem;
+        font-size: 0.75rem;
         color: #302c2c;
     }
     
@@ -253,9 +277,22 @@
 
 @media (max-width: 250px){
 
+    .info > p{
+        width: 90%;
+    }        
+    .info > p, .info > p > span{
+        letter-spacing: 0.6px;
+    }
+
+    p#clouds-like > span{
+        letter-spacing: 0.35px;
+    }
+
+
     .scrollToTopBtn{
         left: 4.1vw;
     }   
+
     #slider-forecast{        
         width: 20vw;
         left: 1.5vw;  
