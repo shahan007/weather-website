@@ -28,7 +28,7 @@ $ source venv/Scripts/activate
 (venv) $ export FLASK_APP=run.py
 (venv) $ export API_KEY=<YOUR_API_KEY>
 ```
-_**Generating Secret Key for session**_
+###### Generating Secret Key for session
 ```console
 (venv) $ python -c 'import os; print(os.urandom(16))'
 b'\xba\xc9>\xfc}\xcf\x1b\xe5\xcc\xb8\x94L\x8e\x8c-C'      #copy this secret key & set it as secret key
