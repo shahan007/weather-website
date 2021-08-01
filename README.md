@@ -11,31 +11,31 @@ _Check out the website here: **[Weather Health](https://weather-health.herokuapp
 ## How to run ?
 
 #### Clone the repo
-```console
+```bash
 $ git clone https://github.com/shahan007/weather-website.git
 ```
 
 #### Setting up the environment
-```console
+```bash
 $ python -m venv venv
 $ source venv/Scripts/activate
 (venv) $ pip install -r requirements.txt
 ```
 
 #### Setting up the environment variables
-```console
+```bash
 (venv) $ export FLASK_DEBUG=1     #optional
 (venv) $ export FLASK_APP=run.py
 (venv) $ export API_KEY=<YOUR_API_KEY>
 ```
 ###### Generating Secret Key for session
-```console
+```bash
 (venv) $ python -c 'import os; print(os.urandom(16))'
 b'\xba\xc9>\xfc}\xcf\x1b\xe5\xcc\xb8\x94L\x8e\x8c-C'      #copy this secret key & set it as secret key
 (venv) $ export SECRET_KEY=\xba\xc9>\xfc}\xcf\x1b\xe5\xcc\xb8\x94L\x8e\x8c-C
 ```
 
 #### Run the website
-```console
+```bash
 (venv) $ flask run
 ```
