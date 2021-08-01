@@ -37,5 +37,5 @@ b'\xba\xc9>\xfc}\xcf\x1b\xe5\xcc\xb8\x94L\x8e\x8c-C'      #copy this secret key 
 
 #### Run the website
 ```console
-$ flask run
+(venv) $ flask run
 ```
