@@ -19,7 +19,7 @@ $ git clone https://github.com/shahan007/weather-website.git
 ```console
 $ python -m venv venv
 $ source venv/Scripts/activate
-$ pip install -r requirements.txt
+(venv) $ pip install -r requirements.txt
 ```
 
 #### Setting up the environment variables
